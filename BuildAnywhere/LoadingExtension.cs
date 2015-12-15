@@ -8,19 +8,14 @@ namespace BuildAnywhere
 
         public override void OnLevelLoaded(LoadMode mode)
         {
-            switch (mode)
+            if (mode != LoadMode.LoadGame || mode != LoadMode.NewGame)
             {
-                case LoadMode.LoadMap:
-                case LoadMode.NewMap:
-                    return;
-                case LoadMode.LoadGame:
-                case LoadMode.NewGame:
-                    if (Util.IsModActive("81 Tiles(Fixed for C:S 1.2 +)") || Util.IsModActive("81 Tile Unlock"))
-                    {
-                        UnityEngine.Debug.Log("81 Tiles is active.");
-                        return;
-                    }
-                    break;
+                return;
+            }
+            if (Util.IsModActive("81 Tiles(Fixed for C:S 1.2 +)") || Util.IsModActive("81 Tile Unlock"))
+            {
+                UnityEngine.Debug.Log("81 Tiles is active.");
+                return;
             }
             GameAreaManagerDetour.Deploy();
         }
