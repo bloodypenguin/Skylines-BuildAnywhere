@@ -2,7 +2,7 @@
 
 namespace BuildAnywhere
 {
-    public class Mod : LoadingExtensionBase, IUserMod
+    public class Mod : IUserMod
     {
         public string Name => "CrossTheLine";
 
