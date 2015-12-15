@@ -32,9 +32,17 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Detours.cs" />
+    <Compile Include="CrossTheLine.cs" />
+    <Compile Include="Detours\GameAreaManagerDetour.cs" />
+    <Compile Include="LoadingExtension.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redirection\RedirectionHelper.cs" />
+    <Compile Include="Redirection\RedirectionUtil.cs" />
+    <Compile Include="Redirection\RedirectMethodAttribute.cs" />
+    <Compile Include="Redirection\TargetType.cs" />
+    <Compile Include="Redirection\Tuple.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
