@@ -99,7 +99,7 @@ namespace BuildAnywhere
                 }
                 else
                 {
-                    if (currentTool is TreeTool || currentTool is BulldozeTool ||
+                    if (currentTool is TreeTool || currentTool is DefaultTool ||
                         currentTool is PropTool || currentTool is WaterTool || currentTool is DistrictTool || currentTool is TerrainTool)
                     {
                         result = false;

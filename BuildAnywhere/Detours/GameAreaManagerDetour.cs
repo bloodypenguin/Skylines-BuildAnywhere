@@ -4,6 +4,7 @@ using System.Threading;
 using BuildAnywhere.Redirection;
 using ColossalFramework;
 using ColossalFramework.Math;
+using ICities;
 
 namespace BuildAnywhere.Detours
 {
@@ -14,7 +15,7 @@ namespace BuildAnywhere.Detours
         private static RedirectCallsState _state;
         private static IntPtr _originalPtr = IntPtr.Zero;
         private static IntPtr _detourPtr = IntPtr.Zero;
-
+        public static LoadMode mode;
         private static MethodInfo _detourInfo = typeof(GameAreaManagerDetour).GetMethod("QuadOutOfArea");
         private static bool _deployed;
 
@@ -44,6 +45,10 @@ namespace BuildAnywhere.Detours
         [RedirectMethod]
         public bool QuadOutOfArea(Quad2 quad)
         {
+            if (mode != LoadMode.NewGame && mode != LoadMode.LoadGame)
+            {
+                return false;
+            }
             var result = CrossTheLine.IsCrossingLineProhibited();
             if (result)
             {
