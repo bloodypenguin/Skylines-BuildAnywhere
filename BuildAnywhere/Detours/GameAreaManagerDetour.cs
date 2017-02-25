@@ -45,7 +45,7 @@ namespace BuildAnywhere.Detours
         [RedirectMethod]
         public bool QuadOutOfArea(Quad2 quad)
         {
-            if (mode != LoadMode.NewGame && mode != LoadMode.LoadGame)
+            if (mode != LoadMode.NewGame && mode != LoadMode.LoadGame && mode !=LoadMode.NewGameFromScenario)
             {
                 return false;
             }

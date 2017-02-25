@@ -41,36 +41,43 @@ namespace BuildAnywhere
                     }
                     if (building != null && building.m_placementMode != BuildingInfo.PlacementMode.Roadside)
                     {
-                        var paths = building.m_paths;
-                        if (paths == null || paths.Length <= 0)
-                        {
-                            result = false;
-                        }
-                        else
-                        {
-                            var allClear = true;
-                            foreach (var path in paths)
-                            {
-                                if (CheckNetInfo(ref path.m_netInfo))
-                                {
-                                    allClear = false;
-                                    break;
-                                }
-                            }
-                            if (allClear)
-                            {
-                                result = false;
-                            }
-                        }
+                        result = CheckBuildingForZoneableRoads(building);
                     }
                 }
                 else
                 {
-                    if (currentTool is TreeTool || currentTool is DefaultTool ||
+                    if (currentTool is TreeTool || currentTool is DefaultTool || currentTool is DisasterTool ||
                         currentTool is PropTool || currentTool is WaterTool || currentTool is DistrictTool || currentTool is TerrainTool)
                     {
                         result = false;
                     }
+                }
+            }
+            return result;
+        }
+
+        private static bool CheckBuildingForZoneableRoads(BuildingInfo building)
+        {
+            var result = true;
+            var paths = building.m_paths;
+            if (paths == null || paths.Length <= 0)
+            {
+                result = false;
+            }
+            else
+            {
+                var allClear = true;
+                foreach (var path in paths)
+                {
+                    if (CheckNetInfo(ref path.m_netInfo))
+                    {
+                        allClear = false;
+                        break;
+                    }
+                }
+                if (allClear)
+                {
+                    result = false;
                 }
             }
             return result;
