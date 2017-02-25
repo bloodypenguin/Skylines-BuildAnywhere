@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ColossalFramework.Plugins;
 using ICities;
 
@@ -7,26 +6,6 @@ namespace BuildAnywhere
 {
     public static class Util
     {
-        public static Type FindType(string className)
-        {
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                try
-                {
-                    var types = assembly.GetTypes();
-                    foreach (var type in types.Where(type => type.Name == className))
-                    {
-                        return type;
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
-            return null;
-        }
-
         public static bool IsModActive(string modName)
         {
             var plugins = PluginManager.instance.GetPluginsInfo();

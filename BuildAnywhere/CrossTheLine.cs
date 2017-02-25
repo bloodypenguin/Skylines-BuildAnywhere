@@ -8,39 +8,6 @@ namespace BuildAnywhere
     {
         private static bool _fieldInitialized;
         private static bool _typeInitialized;
-        private static FieldInfo _fineNetToolPrefabField;
-        private static Type _fineNetToolType;
-
-        public static FieldInfo FineNetToolPrefabField
-        {
-            get
-            {
-                if (_fieldInitialized)
-                {
-                    return _fineNetToolPrefabField;
-                }
-                if (FineNetToolType != null)
-                {
-                    _fineNetToolPrefabField = _fineNetToolType.GetField("m_prefab", BindingFlags.Instance | BindingFlags.Public);
-                }
-                _fieldInitialized = true;
-                return _fineNetToolPrefabField;
-            }
-        }
-
-        public static Type FineNetToolType
-        {
-            get
-            {
-                if (_typeInitialized)
-                {
-                    return _fineNetToolType;
-                }
-                _fineNetToolType = Util.FindType("NetToolFine");
-                _typeInitialized = true;
-                return _fineNetToolType;
-            }
-        }
 
         public static bool IsCrossingLineProhibited()
         {
@@ -103,20 +70,6 @@ namespace BuildAnywhere
                         currentTool is PropTool || currentTool is WaterTool || currentTool is DistrictTool || currentTool is TerrainTool)
                     {
                         result = false;
-                    }
-                    else
-                    {
-                        if (ToolsModifierControl.toolController != null && FineNetToolType != null &&
-                            FineNetToolPrefabField != null &&
-                            ToolsModifierControl.toolController.CurrentTool.GetType() == FineNetToolType)
-                        {
-                            var prefab =
-                                (NetInfo)FineNetToolPrefabField.GetValue(ToolsModifierControl.toolController.CurrentTool);
-                            if (!CheckNetInfo(ref prefab))
-                            {
-                                result = false;
-                            }
-                        }
                     }
                 }
             }
