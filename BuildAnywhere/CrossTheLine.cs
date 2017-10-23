@@ -6,8 +6,6 @@ namespace BuildAnywhere
 {
     public static class CrossTheLine
     {
-        private static bool _fieldInitialized;
-        private static bool _typeInitialized;
 
         public static bool IsCrossingLineProhibited()
         {
