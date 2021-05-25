@@ -4,6 +4,7 @@ using ColossalFramework;
 
 namespace BuildAnywhere
 {
+    //don't rename anything here! 81 Tiles searches for this code!
     public static class CrossTheLine
     {
 
